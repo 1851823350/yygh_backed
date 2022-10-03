@@ -14,6 +14,8 @@
     <version>1.0</version>
     <modules>
         <module>service_user</module>
+        <module>service_hosp</module>
+        <module>service_cmn</module>
     </modules>
 
     <properties>
@@ -24,12 +26,17 @@
     <dependencies>
         <dependency>
             <groupId>com.atwj</groupId>
+            <artifactId>model</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.atwj</groupId>
             <artifactId>service-util</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>com.atwj</groupId>
-            <artifactId>model</artifactId>
+            <artifactId>common-utils</artifactId>
             <version>1.0</version>
         </dependency>
         <!--web-->
@@ -69,31 +76,4 @@
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.yml</include>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes> <include>**/*.yml</include>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
-    </build>
 </project>
