@@ -29,8 +29,19 @@ spring:
         max-wait: -1 # 最大阻塞等待时间，负数表示没有
         min-idle: 0
 
-#  application:
-#    name: server-hosp
+  application:
+    name: server-cmn
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'  #暴露监控端点
 
 
 mybatis-plus:
