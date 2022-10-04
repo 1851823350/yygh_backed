@@ -1,4 +1,4 @@
-package com.atwj.yygh.common;
+package com.atwj.yygh.common.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
