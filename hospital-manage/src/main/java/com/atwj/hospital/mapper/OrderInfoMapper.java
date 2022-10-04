@@ -1,6 +1,6 @@
 package com.atwj.hospital.mapper;
 
-import com.atguigu.hospital.model.OrderInfo;
+import com.atwj.hospital.model.OrderInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

@@ -1,16 +1,16 @@
 package com.atwj.hospital.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.atguigu.hospital.mapper.OrderInfoMapper;
-import com.atguigu.hospital.mapper.ScheduleMapper;
-import com.atguigu.hospital.model.OrderInfo;
-import com.atguigu.hospital.model.Patient;
-import com.atguigu.hospital.model.Schedule;
-import com.atguigu.hospital.service.ApiService;
-import com.atguigu.hospital.service.HospitalService;
-import com.atguigu.hospital.util.HttpRequestHelper;
-import com.atguigu.hospital.util.ResultCodeEnum;
-import com.atguigu.hospital.util.YyghException;
+import com.atwj.hospital.mapper.OrderInfoMapper;
+import com.atwj.hospital.mapper.ScheduleMapper;
+import com.atwj.hospital.model.OrderInfo;
+import com.atwj.hospital.model.Patient;
+import com.atwj.hospital.model.Schedule;
+import com.atwj.hospital.service.ApiService;
+import com.atwj.hospital.service.HospitalService;
+import com.atwj.hospital.util.HttpRequestHelper;
+import com.atwj.hospital.util.ResultCodeEnum;
+import com.atwj.hospital.util.YyghException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

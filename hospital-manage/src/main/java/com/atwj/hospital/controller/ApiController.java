@@ -1,11 +1,10 @@
 package com.atwj.hospital.controller;
 
-import com.atguigu.hospital.mapper.HospitalSetMapper;
-import com.atguigu.hospital.model.HospitalSet;
-import com.atguigu.hospital.service.ApiService;
-import com.atguigu.hospital.util.YyghException;
+import com.atwj.hospital.mapper.HospitalSetMapper;
+import com.atwj.hospital.model.HospitalSet;
+import com.atwj.hospital.service.ApiService;
+import com.atwj.hospital.util.YyghException;
 import io.swagger.annotations.Api;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -27,10 +27,10 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping
 public class ApiController extends BaseController {
 
-	@Autowired
+	@Resource
 	private ApiService apiService;
 
-	@Autowired
+	@Resource
 	private HospitalSetMapper hospitalSetMapper;
 
 	@RequestMapping("/hospitalSet/index")
