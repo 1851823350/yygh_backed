@@ -65,5 +65,10 @@
             <artifactId>commons-pool2</artifactId>
             <version>2.6.0</version>
         </dependency>
+        <!--fastjson用于将Java Bean序列化为JSON字符串，也可以从JSON字符串反序列化到JavaBean。-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
     </dependencies>
 </project>
