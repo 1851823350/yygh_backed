@@ -8,6 +8,7 @@ spring:
     username: root
     password: abc123
 
+  # 开发环境
   profiles:
     active: dev
 
@@ -16,8 +17,26 @@ spring:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
 
-#  application:
-#    name: server-hosp
+  # mongodb地址
+  data:
+    mongodb:
+      uri: mongodb://192.168.198.129:27017/yygh_hosp
+
+  # 微服务模块名称
+  application:
+    name: server-hosp
+
+  # 配置nacos地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'  #暴露监控端点
 
 
 mybatis-plus:

@@ -1,6 +1,6 @@
 package com.atwj.yygh.service.Impl;
 
-import com.atwj.yygh.common.MD5;
+import com.atwj.yygh.common.utils.MD5;
 import com.atwj.yygh.mapper.HospitalSetMapper;
 import com.atwj.yygh.model.hosp.HospitalSet;
 import com.atwj.yygh.service.HospitalSetService;
@@ -60,5 +60,12 @@ public class HospitalSetServiceImpl extends ServiceImpl<HospitalSetMapper, Hospi
         return resultNum;
     }
 
-
+    //根据hoscode查询签名
+    @Override
+    public String getSignKey(String hoscode) {
+        QueryWrapper<HospitalSet> wrapper = new QueryWrapper<>();
+        wrapper.eq("hoscode",hoscode);
+        HospitalSet hospitalSet = baseMapper.selectOne(wrapper);
+        return hospitalSet.getSignKey();
+    }
 }

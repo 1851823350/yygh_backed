@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author 吴先森
- * @description:
+ * @description: 预约系统后台医院信息设置接口
  * @create 2022-09-27 9:34
  */
 @Service
@@ -19,4 +19,7 @@ public interface HospitalSetService extends IService<HospitalSet> {
 
     //添加医院信息
     public Integer saveHospSet(HospitalSet hospitalSet);
+
+    //获取密钥
+    String getSignKey(String hoscode);
 }
