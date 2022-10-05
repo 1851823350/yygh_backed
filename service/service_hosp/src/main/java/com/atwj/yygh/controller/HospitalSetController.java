@@ -18,11 +18,11 @@ import java.util.List;
  * @description:
  * @create 2022-09-27 8:32
  */
-@Api(tags = "医院设置管理")
+@Api(tags = "医院设置管理接口")
 @RestController
 @RequestMapping("/admin/hosp/hospitalSet")
 @CrossOrigin //跨域
-public class HospitalSerController {
+public class HospitalSetController {
 
     @Resource
     private HospitalSetService hospitalSetService;

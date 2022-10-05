@@ -22,4 +22,6 @@ public interface HospitalSetService extends IService<HospitalSet> {
 
     //获取密钥
     String getSignKey(String hoscode);
+
+
 }

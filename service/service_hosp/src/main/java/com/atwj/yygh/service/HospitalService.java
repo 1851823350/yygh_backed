@@ -1,6 +1,8 @@
 package com.atwj.yygh.service;
 
 import com.atwj.yygh.model.hosp.Hospital;
+import com.atwj.yygh.vo.hosp.HospitalQueryVo;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -17,4 +19,10 @@ public interface HospitalService {
 
     //根据hoscode查询医院信息
     Hospital getByHoscode(String hoscode);
+
+    //分页查询医院信息
+    Page<Hospital> selectPage(Integer page, Integer limit, HospitalQueryVo hospitalQueryVo);
+
+    //更改医院上线状态
+    void updateStatus(String id, Integer status);
 }
