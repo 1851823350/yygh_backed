@@ -2,6 +2,7 @@ package com.atwj.yygh.service.impl;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.EasyExcelFactory;
+import com.atwj.yygh.commonResult.Result;
 import com.atwj.yygh.listener.DictListener;
 import com.atwj.yygh.mapper.DictMapper;
 import com.atwj.yygh.model.cmn.Dict;
@@ -9,6 +10,7 @@ import com.atwj.yygh.service.DictService;
 import com.atwj.yygh.vo.cmn.DictEeVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -34,7 +36,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
 
 
     //根据数据id查询子数据列表
-    @Cacheable(value = "dict",keyGenerator = "keyGenerator")  //按照配置文件中自定义方法生成key，其形式为：dict + keyGenerator方法生成的字段
+    @Cacheable(value = "dict", keyGenerator = "keyGenerator")  //按照配置文件中自定义方法生成key，其形式为：dict + keyGenerator方法生成的字段
     @Override
     public List<Dict> findChildrenData(Long id) {
         QueryWrapper<Dict> DictWrapper = new QueryWrapper<>();
@@ -78,16 +80,41 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
         }
     }
 
-    @CacheEvict(value = "dict", allEntries=true)  //这里表示当调用此方法，则清空dict块下的所有缓存
+    @CacheEvict(value = "dict", allEntries = true)  //这里表示当调用此方法，则清空dict块下的所有缓存
     @Override
     public void importData(MultipartFile file) {
         try {
             EasyExcelFactory.read(file.getInputStream(),
-                                        DictEeVo.class,
-                                  new DictListener(dictMapper)).sheet().doRead();
-                } catch (IOException e) {
+                    DictEeVo.class,
+                    new DictListener(dictMapper)).sheet().doRead();
+        } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String getDictName(String parentDictCode, String value) {
+        QueryWrapper<Dict> wrapper = new QueryWrapper<>();
+        //如果value能唯一定位数据字典，parentDictCode可以传空，例如：省市区的value值能够唯一确定
+        if(StringUtils.isEmpty(parentDictCode)){
+            Dict dict = dictMapper.selectOne(wrapper.eq("value", value));
+            return dict.getName();
+        }else{
+            Dict dict = dictMapper.selectOne(wrapper.eq("dict_code", parentDictCode));
+            Dict resultDict = dictMapper.selectOne(new QueryWrapper<Dict>()
+                                                                        .eq("parent_id", dict.getId())
+                                                                        .eq("value", value));
+            return resultDict.getName();
+        }
+    }
+
+    @Override
+    public List<Dict> getDictByDictCode(String dictCode) {
+        QueryWrapper<Dict> wrapper = new QueryWrapper<>();
+        Dict dict = dictMapper.selectOne(wrapper.eq("dict_code", dictCode));
+        Long dictId = dict.getId();
+        List<Dict> childrenData = this.findChildrenData(dictId);
+        return childrenData;
     }
 
     //判断id是否含有子节点
