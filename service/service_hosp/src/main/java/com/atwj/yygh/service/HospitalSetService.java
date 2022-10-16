@@ -2,6 +2,7 @@ package com.atwj.yygh.service;
 
 import com.atwj.yygh.model.hosp.HospitalSet;
 import com.atwj.yygh.vo.hosp.HospitalSetQueryVo;
+import com.atwj.yygh.vo.order.SignInfoVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,6 @@ public interface HospitalSetService extends IService<HospitalSet> {
     //获取密钥
     String getSignKey(String hoscode);
 
-
+    //获取医院的签名密钥
+    SignInfoVo getSignInfoVo(String hoscode);
 }

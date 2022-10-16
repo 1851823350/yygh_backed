@@ -5,9 +5,11 @@ import com.atwj.yygh.commonResult.Result;
 import com.atwj.yygh.model.hosp.HospitalSet;
 import com.atwj.yygh.service.HospitalSetService;
 import com.atwj.yygh.vo.hosp.HospitalSetQueryVo;
+import com.atwj.yygh.vo.order.SignInfoVo;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -18,10 +20,10 @@ import java.util.List;
  * @description:
  * @create 2022-09-27 8:32
  */
-@Api(tags = "医院设置管理接口")
+@Api(tags = "预约平台-后台医院设置管理接口")
 @RestController
 @RequestMapping("/admin/hosp/hospitalSet")
-@CrossOrigin //跨域
+//@CrossOrigin //跨域
 public class HospitalSetController {
 
     @Resource
@@ -122,5 +124,4 @@ public class HospitalSetController {
         //  TODO 发送短信
         return Result.ok();
     }
-
 }

@@ -1,10 +1,13 @@
 package com.atwj.yygh.service.Impl;
 
 import com.atwj.yygh.common.utils.MD5;
+import com.atwj.yygh.commonResult.ResultCodeEnum;
+import com.atwj.yygh.exception.YyghException;
 import com.atwj.yygh.mapper.HospitalSetMapper;
 import com.atwj.yygh.model.hosp.HospitalSet;
 import com.atwj.yygh.service.HospitalSetService;
 import com.atwj.yygh.vo.hosp.HospitalSetQueryVo;
+import com.atwj.yygh.vo.order.SignInfoVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -67,5 +70,19 @@ public class HospitalSetServiceImpl extends ServiceImpl<HospitalSetMapper, Hospi
         wrapper.eq("hoscode",hoscode);
         HospitalSet hospitalSet = baseMapper.selectOne(wrapper);
         return hospitalSet.getSignKey();
+    }
+
+    @Override
+    public SignInfoVo getSignInfoVo(String hoscode) {
+        QueryWrapper<HospitalSet> wrapper = new QueryWrapper<>();
+        wrapper.eq("hoscode",hoscode);
+        HospitalSet hospitalSet = baseMapper.selectOne(wrapper);
+        if(null == hospitalSet) {
+            throw new YyghException(ResultCodeEnum.HOSPITAL_OPEN);
+        }
+        SignInfoVo signInfoVo = new SignInfoVo();
+        signInfoVo.setApiUrl(hospitalSet.getApiUrl());
+        signInfoVo.setSignKey(hospitalSet.getSignKey());
+        return signInfoVo;
     }
 }

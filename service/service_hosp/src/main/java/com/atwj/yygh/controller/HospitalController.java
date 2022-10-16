@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author 吴先森
@@ -20,7 +21,7 @@ import javax.annotation.Resource;
 @Api(tags = "医院管理接口")
 @RestController
 @RequestMapping("/admin/hosp/hospital")
-@CrossOrigin(allowCredentials = "true") //解决跨域问题
+//@CrossOrigin(allowCredentials = "true") //解决跨域问题
 public class HospitalController {
     @Resource
     private HospitalService hospitalService;
@@ -42,9 +43,16 @@ public class HospitalController {
             @ApiParam(name = "id", value = "医院id", required = true)
             @PathVariable("id") String id,
             @ApiParam(name = "status", value = "状态（0：未上线 1：已上线）", required = true)
-            @PathVariable("status") Integer status){
+            @PathVariable("status") Integer status) {
         hospitalService.updateStatus(id, status);
         return Result.ok();
     }
 
+    //查看医院详细信息
+    @ApiOperation(value = "查看医院详细信息")
+    @GetMapping("showHospDetail/{id}")
+    public Result showHospDelete(@PathVariable String id){
+        Map<String, Object> finalMap = hospitalService.getHospById(id);
+        return Result.ok(finalMap);
+    }
 }

@@ -4,7 +4,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
+/*
+ * 查询数据字典中的名称
+ */
 @FeignClient(value = "server-cmn")
 @Repository
 public interface DictFeignClient {

@@ -8,7 +8,7 @@
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <artifactId>service_hosp</artifactId>
 
@@ -27,6 +27,11 @@
             <groupId>com.atwj</groupId>
             <artifactId>service-cmn-client</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.atwj</groupId>
+            <artifactId>rabbitmq-util</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 

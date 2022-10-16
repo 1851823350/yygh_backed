@@ -20,7 +20,9 @@ spring:
   # mongodb地址
   data:
     mongodb:
-      uri: mongodb://192.168.198.129:27017/yygh_hosp
+      host: 192.168.198.129
+      port: 27017
+      database: yygh_hosp
 
   # 微服务模块名称
   application:
@@ -31,6 +33,12 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+  rabbitmq:
+    host: 192.168.198.129
+    port: 15672
+    username: admin
+    password: 123
+
 
 management:
   endpoints:

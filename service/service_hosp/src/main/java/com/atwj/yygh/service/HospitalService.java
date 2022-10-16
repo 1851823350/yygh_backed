@@ -5,6 +5,7 @@ import com.atwj.yygh.vo.hosp.HospitalQueryVo;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,4 +26,16 @@ public interface HospitalService {
 
     //更改医院上线状态
     void updateStatus(String id, Integer status);
+
+    //查询医院详细信息
+    Map<String, Object> getHospById(String id);
+
+    //查询医院名字
+    String getHospName(String hoscode);
+
+    //根据名称模糊查询医院信息
+    List<Hospital> findHospByHosname(String hosname);
+
+    //根据医院编号查询预约挂号信息
+    Map<String, Object> item(String hoscode);
 }

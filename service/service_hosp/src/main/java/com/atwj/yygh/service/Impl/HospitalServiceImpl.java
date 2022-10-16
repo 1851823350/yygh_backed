@@ -2,6 +2,7 @@ package com.atwj.yygh.service.Impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.atwj.yygh.cmn.client.DictFeignClient;
+import com.atwj.yygh.model.hosp.BookingRule;
 import com.atwj.yygh.model.hosp.Hospital;
 import com.atwj.yygh.repository.HospitalRepository;
 import com.atwj.yygh.service.HospitalService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -93,6 +95,45 @@ public class HospitalServiceImpl implements HospitalService {
         hospital.setStatus(status);
         hospital.setUpdateTime(new Date());
         hospitalRepository.save(hospital);
+    }
+
+    @Override
+    public Map<String, Object> getHospById(String id) {
+        HashMap<String, Object> resultMap = new HashMap<>();
+        Hospital hospital = hospitalRepository.findById(id).get();
+        BookingRule bookingRule = hospital.getBookingRule();
+
+        resultMap.put("hospital", hospital);
+        resultMap.put("bookingRule", bookingRule);
+
+        //将得到的hospital的预约规则设为null，避免重复返回
+        hospital.setBookingRule(null);
+        return resultMap;
+    }
+
+    @Override
+    public String getHospName(String hoscode) {
+        Hospital hospital = hospitalRepository.getHospitalByHoscode(hoscode);
+        String hosname = hospital.getHosname();
+        return hosname;
+    }
+
+    @Override
+    public List<Hospital> findHospByHosname(String hosname) {
+        return hospitalRepository.getHospitalByHosnameLike(hosname);
+    }
+
+    @Override
+    public Map<String, Object> item(String hoscode) {
+        Map<String, Object> result = new HashMap<>();
+        //医院详情
+        Hospital hospital = this.setHospitalHosType(this.getByHoscode(hoscode));
+        result.put("hospital", hospital);
+        //预约规则
+        result.put("bookingRule", hospital.getBookingRule());
+        //不需要重复返回
+        hospital.setBookingRule(null);
+        return result;
     }
 
     /**

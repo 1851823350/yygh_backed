@@ -31,7 +31,7 @@ import java.util.Map;
  * @description: 预约平台对外(其他医院平台)开放的接口
  * @create 2022-10-03 13:23
  */
-@Api(tags = "医院管理API接口")
+@Api(tags = "预约平台对接其他医院系统API接口")
 @RestController
 @RequestMapping("/api/hosp")
 public class ApiController {

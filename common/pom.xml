@@ -16,6 +16,7 @@
     <modules>
         <module>service-util</module>
         <module>common-utils</module>
+        <module>rabbitmq-util</module>
     </modules>
 
     <properties>
