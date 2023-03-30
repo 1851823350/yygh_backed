@@ -53,10 +53,7 @@ docker：容器技术
 git：代码管理工具
 easy excel：读写Excel文件
 Joda time：日期时间操作工具    
-## 业务流程
-![输入图片说明](https://foruda.gitee.com/images/1665917705715109206/426c53ed_10883935.png "屏幕截图")
-## 服务架构
-![输入图片说明](https://foruda.gitee.com/images/1665917762364836838/2317d6ac_10883935.png "屏幕截图")
+
 
 
 
